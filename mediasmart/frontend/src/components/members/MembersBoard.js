@@ -5,12 +5,8 @@ import MembersList from './MembersList';
 class MembersBoard extends Component {
     render() {
         return (
-            <div>
-                <div className='jokesContainer'>
-                        <div className='container'>
-                            <MembersList />
-                        </div>
-                    </div>
+            <div className=''>
+                <MembersList />
             </div>
         )
     }

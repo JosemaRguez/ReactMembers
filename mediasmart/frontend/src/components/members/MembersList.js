@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 const MembersList = (props) => {
     return (
         <div className="row">
-            <div className="col s5 card">
+            <div className="col s2 offset-s1 card">
                 <Link to={"/member/1"} key="1">
                     <div>
-                        <img src="https://pbs.twimg.com/profile_images/661718785905201152/dgLmIh3v_400x400.jpg" alt="image1" />
+                        <img src="https://pbs.twimg.com/profile_images/661718785905201152/dgLmIh3v_400x400.jpg" alt="image1" style={{width: "5em", height: "5em"}}/>
                         <span className="card-title">Señor fardón</span>
                     </div>
                     <div className="card-stacked">
@@ -18,10 +18,10 @@ const MembersList = (props) => {
                 </Link>
             </div>
 
-            <div className="col s5 offset-s1 card">
+            <div className="col s2 offset-s1 card">
                 <Link to={"/member/2"} key="2">
                     <div>
-                        <img src="https://as01.epimg.net/img/comunes/fotos/fichas/deportistas/m/mes/large/15167.png" alt="image1" />
+                        <img src="https://as01.epimg.net/img/comunes/fotos/fichas/deportistas/m/mes/large/15167.png" alt="image1" style={{width: "5em", height: "5em"}}/>
                         <span className="card-title">Retard</span>
                     </div>
                     <div className="card-stacked">
