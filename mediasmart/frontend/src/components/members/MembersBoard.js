@@ -5,7 +5,7 @@ import MembersList from './MembersList';
 class MembersBoard extends Component {
     render() {
         return (
-            <div className=''>
+            <div className='container'>
                 <MembersList />
             </div>
         )

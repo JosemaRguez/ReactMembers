@@ -1,8 +1,12 @@
 import React from 'react'
+import '../../styles/styles.css'
 
 const PageLinks = () => {
     return (
-            <a href="/" className="brand-logo center">Members</a>
+        <div className="mx-auto order-0">
+            <a className="navbar-brand mx-auto navbarTextSize" href="/">Members</a>
+        </div>
+
     )
 }
 

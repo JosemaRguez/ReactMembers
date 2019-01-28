@@ -7,7 +7,7 @@ const MembersList = (props) => {
             <div className="col s2 offset-s1 card">
                 <Link to={"/member/1"} key="1">
                     <div>
-                        <img src="https://pbs.twimg.com/profile_images/661718785905201152/dgLmIh3v_400x400.jpg" alt="image1" style={{width: "5em", height: "5em"}}/>
+                        <img className="rounded-circle" src="https://pbs.twimg.com/profile_images/661718785905201152/dgLmIh3v_400x400.jpg" alt="image1" style={{width: "5em", height: "5em"}}/>
                         <span className="card-title">Señor fardón</span>
                     </div>
                     <div className="card-stacked">
