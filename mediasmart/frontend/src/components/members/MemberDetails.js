@@ -5,7 +5,7 @@ const MemberDetails = (props) => {
   return (
     <div className="card col-6 p-5">
       <div className="p-1">
-        <img className="img-fluid float-left rounded-circle p-2" src="https://www.mediasmart.io/assets/images/team/aniss.laamouri.funny.jpg" alt={`image ${props.match.params.id}`} />
+        <img className="img-fluid float-left rounded-circle p-2" src="https://www.mediasmart.io/assets/images/team/aniss.laamouri.funny.jpg" alt={`${props.match.params.id}`} />
         <p>{"NAME"}</p>
         <p>{"AGE"}</p>
       </div>

@@ -8,20 +8,20 @@ const MembersList = (props) => {
         <div className="container">
             <div className="row">
                 {props.listOfMembers.map(member =>
-                    <Link to={`/member/${member.id}`} className="col-4 p-5" style={{ textDecoration: 'none' }} key={member.id}>
+                    <div className="col-4 p-5" key={member.id}>
                         <div className="card">
                             <div className="p-1">
                                 <img className="img-fluid float-left rounded-circle p-2" src={member.image} alt={`Card ${member.id} not found`} />
-                                <p>{`${member.name}`}</p>
+                                <p className="p-2">{`${member.name}`}</p>
                             </div>
                             <div className="card-body">
-                                <div className="card-content">
-                                    <p className="card-text">{`Age: ${member.age}`}</p>
-                                </div>
+                                <p className="card-text">{`${member.age} years old`}</p>
+                                <Link to={`/member/${member.id}`} className="btn btn-secondary btn-block ">
+                                    Check bio
+                                    </Link>
                             </div>
                         </div>
-                    </Link>
-
+                    </div>
                 )}
             </div>
         </div>
