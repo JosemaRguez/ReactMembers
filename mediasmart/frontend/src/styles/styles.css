@@ -2,12 +2,9 @@ body{
     background-color: #F5F7F6;
 }
 
-.logo{
-    left: 50px;
-}
-
 .navbarTextSize{
-	font-size: 30px;
+    padding-left: 1vw;
+    font-size: 4vh;
 }
 
 .img-fluid{
