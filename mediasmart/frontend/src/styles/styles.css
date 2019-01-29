@@ -14,3 +14,20 @@ body{
     height: auto;
     max-width: 35%;
 }
+
+.noDecorationImage {
+    font-size: 1vw;
+    text-decoration: none;
+}
+
+img{
+    font-size: 1vw;
+    width:100%;
+    height:auto;
+}
+
+p{
+    font-size: 1vw;
+    width:100%;
+    height:auto;
+}
