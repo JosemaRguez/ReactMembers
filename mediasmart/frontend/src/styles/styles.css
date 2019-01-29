@@ -2,10 +2,29 @@ body{
     background-color: #F5F7F6;
 }
 
-.logo{
-    left: 50px;
+.navbarTextSize{
+    padding-left: 1vw;
+    font-size: 4vh;
 }
 
-.navbarTextSize{
-	font-size: 30px;
+.img-fluid{
+    height: auto;
+    max-width: 35%;
+}
+
+.noDecorationImage {
+    font-size: 1vw;
+    text-decoration: none;
+}
+
+img{
+    font-size: 1vw;
+    width:100%;
+    height:auto;
+}
+
+p{
+    font-size: 1vw;
+    width:100%;
+    height:auto;
 }

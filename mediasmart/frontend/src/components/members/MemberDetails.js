@@ -1,21 +1,21 @@
 import React from 'react'
 
 const MemberDetails = (props) => {
-    console.log(props)
-    return (
-        <div className="col s4 m7">
-        <div className="card horizontal">
-            <div className="card-image">
-                <img src="https://pbs.twimg.com/profile_images/661718785905201152/dgLmIh3v_400x400.jpg" alt={"image" + props.match.params.id} />
-            </div>
-          <div className="card-stacked">
-            <div className="card-content">
-              <p>This is the bio number {props.match.params.id}.</p>
-            </div>
-          </div>
+  console.log(props)
+  return (
+    <div className="card col-6 p-5">
+      <div className="p-1">
+        <img className="img-fluid float-left rounded-circle p-2" src="https://www.mediasmart.io/assets/images/team/aniss.laamouri.funny.jpg" alt={`${props.match.params.id}`} />
+        <p>{"NAME"}</p>
+        <p>{"AGE"}</p>
+      </div>
+      <div className="card-body">
+        <div className="card-content">
+          <p className="card-text">{"BIO"}</p>
         </div>
       </div>
-    )
+    </div>
+  )
 }
 
 export default MemberDetails
