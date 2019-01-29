@@ -9,3 +9,8 @@ body{
 .navbarTextSize{
 	font-size: 30px;
 }
+
+.img-fluid{
+    height: auto;
+    max-width: 35%;
+}
