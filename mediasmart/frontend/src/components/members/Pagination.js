@@ -3,13 +3,6 @@ import '../../styles/styles.css'
 import { Link } from 'react-router-dom'
 
 const Pagination = (props) => {
-    
-    // const handleNavigationPage = () => {
-    //     if (this.props.match.params.page - 1 < 1) {
-    //         return
-    //     }
-    // }
-
     return (
         <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
