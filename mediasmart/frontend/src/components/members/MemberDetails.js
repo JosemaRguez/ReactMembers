@@ -1,7 +1,6 @@
 import React from 'react'
 
 const MemberDetails = (props) => {
-  console.log(props)
   return (
     <div className="card col-6 p-5">
       <div className="p-1">
