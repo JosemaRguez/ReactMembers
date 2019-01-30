@@ -142,8 +142,9 @@ class MembersBoard extends Component {
             ]
         }
     }
-
+    
     render() {
+        console.log(this.state.listOfMembers)
         return (
             <div className='container'>
                 <MembersList listOfMembers={this.state.listOfMembers[this.props.match.params.page - 1]} />
