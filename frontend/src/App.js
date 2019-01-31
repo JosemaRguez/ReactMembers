@@ -16,7 +16,7 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Switch >
-            <Route path='/' component={MembersBoard} push/>
+            <Route exact path='/list/:page' component={MembersBoard}/>
             <Route path='/member/:id' component={MemberDetails} /> 
           </Switch>
         </div>

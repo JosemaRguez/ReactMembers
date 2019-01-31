@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 
 const MembersList = (props) => {
+    console.log(props)
     if (props.listOfMembers) {
         return (
             <div className="container">
                 <div className="row">
-                    {props.listOfMembers && props.listOfMembers.map(member =>
+                    {!props.isLoading && props.listOfMembers && props.listOfMembers.map(member =>
                         <div className="col-4 p-5" key={member.id}>
                             <div className="card">
                                 <div className="p-1">

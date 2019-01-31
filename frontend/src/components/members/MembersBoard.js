@@ -8,30 +8,41 @@ class MembersBoard extends Component {
         super(props)
         this.state = {
             pageNumbers: [1, 2, 3, 4],
-            listOfMembers: []
+            listOfMembers: [],
+            isLoading: true,
+            currentPage: 1
         }
-
-        this.componentDidMount.bind()
     }
 
-    componentDidMount () {
-            fetch("/getMembers")
+    handleUpdate = () => {
+        console.log('dale')
+        this.setState({ isLoading: true, currentPage: this.props.match.params.page })
+    }
+
+    componentDidMount = () => {
+        this.setState({ isLoading: true, currentPage: this.props.match.params.page })
+
+        fetch(`/getMembers?page=${this.state.currentPage}`)
             .then(res => res.json())
             .then(members => {
-                this.setState({ listOfMembers: [...this.state.listOfMembers, JSON.parse(members)] })
+                this.setState({
+                    listOfMembers: [...this.state.listOfMembers, members],
+                    isLoading: false
                 })
+            })
             .catch((err) => {
                 console.log(err)
             })
     }
 
     render() {
-        console.log(this.state.listOfMembers)
+        const { isLoading, listOfMembers, currentPage } = this.state
+
         return (
             <div className='container'>
-                <MembersList listOfMembers={this.state.listOfMembers[this.props.match.params.page - 1]} />
+                <MembersList listOfMembers={listOfMembers[currentPage - 1]} isLoading={isLoading} />
 
-                <Pagination pageNumbers={this.state.pageNumbers} currentPage={this.props.match.params.page} />
+                <Pagination onClick={this.handleUpdate} pageNumbers={this.state.pageNumbers} currentPage={this.props.match.params.page} />
             </div>
         )
     }
