@@ -4,7 +4,7 @@ body{
 
 .navbarTextSize{
     padding-left: 1vw;
-    font-size: 4vh;
+    font-size: 2em;
 }
 
 .img-fluid{
@@ -12,19 +12,7 @@ body{
     max-width: 35%;
 }
 
-.noDecorationImage {
-    font-size: 1vw;
-    text-decoration: none;
-}
-
-img{
-    font-size: 1vw;
-    width:100%;
-    height:auto;
-}
-
-p{
-    font-size: 1vw;
-    width:100%;
-    height:auto;
+.cardNoMove{
+    max-height: 25rem;
+    max-width: 20rem;
 }

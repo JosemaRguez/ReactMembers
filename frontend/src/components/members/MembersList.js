@@ -8,14 +8,15 @@ const MembersList = (props) => {
         return (
             <div className="container">
                 <div className="row">
-                    {!props.isLoading && props.listOfMembers && props.listOfMembers.map(member =>
-                        <div className="col-4 p-5" key={member.id}>
-                            <div className="card">
-                                <div className="p-1">
+                    {props.listOfMembers && props.listOfMembers.map(member =>
+                        <div className="p-4" key={member.id}>
+                            <div className="card cardNoMove">
+                                <div className="card-header p-1">
+
                                     <img className="img-fluid float-left rounded-circle p-2" src={member.image} alt={`Card ${member.id} not found`} />
                                     <p className="p-2">{`${member.name}`}</p>
                                 </div>
-                                <div className="card-body">
+                                <div className="card-body text-center">
                                     <p className="card-text">{`${member.age} years old`}</p>
                                     <Link to={`/member/${member.id}`} className="btn btn-secondary btn-block ">
                                         Check bio
