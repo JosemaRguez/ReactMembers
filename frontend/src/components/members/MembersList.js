@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 
 const MembersList = (props) => {
-    console.log(props)
     if (props.listOfMembers) {
         return (
             <div className="container">
@@ -30,10 +29,14 @@ const MembersList = (props) => {
         )
     }
     else {
+        console.log('deberia estar llegando aqui')
         return (
-            <div className="container">
-                <p className="text-danger p-5" style={{ fontSize: "2rem", textAlign: "center" }}>Oops! There are no members to show</p>
+            <div className="pagination justify-content-center">
+                <div className="spinner-border text-danger spin-big p-5" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
+
         )
     }
 }

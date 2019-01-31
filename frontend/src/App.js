@@ -5,11 +5,6 @@ import MembersBoard from './components/members/MembersBoard'
 import MemberDetails from './components/members/MemberDetails'
 
 class App extends Component {
-  // componentWillMount () {
-  //   const history = createBrowserHistory();
-  //   history.push('/list/1');
-  // }
-
   render() {
     return (
       <BrowserRouter>

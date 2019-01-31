@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/getMembers', (req, res) => {
-	console.log(req.body.page)
+console.log(req.query.page)
   var options = { method: 'GET',
   url: 'http://work.mediasmart.io/',
   qs: { page: req.query.page, page_size: '18' },
