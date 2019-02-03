@@ -12,23 +12,27 @@ app.get('/getMembers', (req, res) => {
 console.log(req.query.page)
   var options = { method: 'GET',
   url: 'http://work.mediasmart.io/',
-  qs: { page: req.query.page, page_size: '18' },
+  qs: { page: req.query.page, page_size: '6' },
   headers: {
    	'cache-control': 'no-cache',
      Authorization: 'mediasmart2019',
      'Content-Type': 'application/json' },
   form: false }
 
+
 request(options, function (error, response, body) {
-  if (error) throw new Error(error)
-  res.send(body)
+	var members = JSON.parse(body)
+
+  	if (error) throw new Error(error)
+  	res.send(members)
 });
 
 });
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
-
+module.exports = app;
 
 

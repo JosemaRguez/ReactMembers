@@ -1,94 +1,124 @@
 import React, { Component } from 'react'
-import '../../styles/styles.css'
 import MembersList from './MembersList'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getListMembers } from '../../store/actions/listActions'
+import '../../styles/styles.css'
 
 class MembersBoard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            pageNumbers: [1, 2, 3, 4, 5],
             listOfMembers: [],
             isLoading: true,
             currentPage: 1
         }
-    }
-    getMembersPage = (page) => {
-        console.log('API running')
-        this.setState({ isLoading: true })
 
-        fetch(`/getMembers?page=${page}`)
-            .then(res => res.json())
-            .then(members => {
-                this.setState({
-                    listOfMembers: [...this.state.listOfMembers, members],
-                    isLoading: false
+    }
+
+    componentWillMount = () => {
+        const page = this.state.currentPage
+        this.setState({isLoading: true, currentPage: page })
+
+        if (this.state.listOfMembers && this.state.listOfMembers.length === 0) {
+            fetch(`/getMembers?page=${page}`)
+                .then(res => res.json())
+                .then(members => {
+                    this.setState({
+                        listOfMembers: [members],
+                        isLoading: false
+                    })
+                    this.props.getListMembers(page, this.state.listOfMembers)
                 })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-
-            this.setState({ isLoading: true })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+        this.setState({ isLoading: true })
     }
 
-    handleUpdate = (e) => {
-        this.getMembersPage(e.target.innerHTML)
+    handleNextPage = (e) => {
+        e.preventDefault()
+        console.log('Next page')
+        const page = this.state.currentPage + 1
+        this.setState({isLoading: true, currentPage: page })
+        console.log(page)
+        if (this.state.listOfMembers[page - 1] && this.state.listOfMembers[page - 1].length === 0) {
+            fetch(`/getMembers?page=${page}`)
+                .then(res => res.json())
+                .then(members => {
+                    this.setState({
+                        listOfMembers: [...this.state.listOfMembers, members],
+                        isLoading: false
+                    })
+                    this.props.getListMembers(page, this.state.listOfMembers)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+
+        this.setState({ isLoading: true })
     }
 
-    componentDidMount = () => {
-        console.log('starting')
-        this.getMembersPage(this.props.match.params.page)
-    }
+    handlePreviousPage = (e) => {
+        e.preventDefault()
+        console.log('Previous page')
+        const page = this.state.currentPage - 1
+        this.setState({ isLoading: true, currentPage: page })
 
-    handleNextPage = () =>{
-        this.getMembersPage(parseInt(this.props.match.params.page) + 1)
-    }
-
-    handlePreviousPage = () =>{
-        this.getMembersPage(parseInt(this.props.match.params.page) - 1)
+        this.props.getListMembers(page, this.state.listOfMembers)
+        this.setState({ isLoading: true })
     }
 
     render() {
-        const { isLoading, listOfMembers} = this.state
+        const { isLoading } = this.state
+        const { listMembers, page } = this.props.listMembers
 
         return (
             <div className='container'>
-                <MembersList listOfMembers={listOfMembers[ this.props.match.params.page - 1]} isLoading={isLoading} />
-            
-                <nav aria-label="Page navigation">
-                    <ul className="pagination justify-content-center">
-                        <li className="page-item">
-                            <a className="page-link" href={`/list/${parseInt(this.props.match.params.page) - 1}`} onClick={this.handlePreviousPage} tabIndex="-1">Previous</a>
-                        </li>
-                        {this.state.pageNumbers.map(page => {
-                            if (page !== parseInt( this.props.match.params.page)) {
-                                return (
-                                    <Link to={`/list/${page}`} className="page-item" onClick={this.handleUpdate} key={page}>
-                                        <span className="page-link">
-                                            {page}
-                                        </span>
-                                    </Link>)
-                            }
-                            else {
-                                return (
-                                    <Link to={`/list/${page}`} className="page-item active" key={page}>
-                                        <span className="page-link">
-                                            {page}
-                                            <span className="sr-only">(current)</span>
-                                        </span>
-                                    </Link>)
-                            }
+                <div id="carouselMembers" className="carousel slide" data-ride="carousel">
+                    <div className="carousel-inner">
+                        {listMembers &&
+                            listMembers.map(members => {
+                                if (listMembers[page - 1] === members) {
+                                    return (<div className="carousel-item active" key={page}>
+                                        <MembersList listOfMembers={members} isLoading={isLoading} currentPage={page} />
+                                    </div>)
+                                }
+                                else {
+                                    return (
+                                        <div className="carousel-item" key={page}>
+                                        <MembersList listOfMembers={members} isLoading={isLoading} currentPage={page} />
+                                    </div>)
+                                }
+                            })
                         }
-                        )}
-                        <li className="page-item">
-                            <a className="page-link" href={`/list/${parseInt( this.props.match.params.page) + 1}`} onClick={this.handleNextPage}>Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                    </div>
+                </div>
+                <a className="carousel-control-prev" href="#carouselMembers" onClick={this.handlePreviousPage} role="button" data-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Previous</span>
+                </a>
+                <a className="carousel-control-next" href="#carouselMembers" onClick={this.handleNextPage} role="button" data-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Next</span>
+                </a>
             </div>
         )
     }
 }
 
-export default MembersBoard;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getListMembers: (currentPage, listMembers) => dispatch(getListMembers(currentPage, listMembers)),
+    }
+}
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        listMembers: state.listMembers
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MembersBoard)

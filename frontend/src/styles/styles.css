@@ -1,5 +1,5 @@
 body{
-    background-color: #F5F7F6;
+    background-color: #82918b;
 }
 
 .navbarTextSize{
@@ -15,6 +15,12 @@ body{
 .cardNoMove{
     max-height: 25rem;
     max-width: 20rem;
+}
+
+.detailsNoMove {
+    min-width: 60rem;
+    min-height: 20rem;
+    max-width: 60rem;
 }
 
 .spin-big {
