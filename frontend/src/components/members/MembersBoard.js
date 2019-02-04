@@ -2,63 +2,74 @@ import React, { Component } from 'react'
 import MembersList from './MembersList'
 import { connect } from 'react-redux'
 import { getListMembers } from '../../store/actions/listActions'
+import { refreshPage } from '../../store/actions/listActions'
 import '../../styles/styles.css'
 
 class MembersBoard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            listOfMembers: [],
-            isLoading: true,
-            currentPage: 1
+            isLoading: false,
+            currentPage: this.props.listOfMembers.page,
+            memberList: []
         }
-
     }
 
-    componentDidMount = () =>{
-        if(this.state.listOfMembers.length === 0){
-            this.props.getListMembers(this.state.currentPage, this.state.listOfMembers)
+    componentDidMount = async () => {
+        const itIsFirstPage = true
+
+        this.setState({ isLoading: true })
+        if (this.props.listOfMembers.listOfMembers.length === 0) {
+            await this.props.getListMembers(this.state.currentPage, itIsFirstPage)
+
         }
-       
-        
-        this.setState({listOfMembers: this.props.list.listMembers, isLoading: true })
-        console.log(this.state.listOfMembers)
+        this.setState({ memberList: this.props.listOfMembers.listOfMembers, isLoading: false })
+        console.log('render first')
     }
 
-    handleNextPage = (e) => {
+    handleNextPage = async (e) => {
         e.preventDefault()
+        const itIsFirstPage = false
+
         console.log('Next page')
         const page = this.state.currentPage + 1
+
         this.setState({ isLoading: true, currentPage: page })
-        console.log(this.props.list.listMembers)
-        this.props.getListMembers(page, this.state.listOfMembers)
+        if (!this.props.listOfMembers.listOfMembers[page - 1] || this.props.listOfMembers.listOfMembers[page - 1].length === 0) {
+            await this.props.getListMembers(page, itIsFirstPage)
+        }
+        else {
+            await this.props.refreshPage(page)
+        }
 
-        this.setState({listOfMembers: this.props.list.listMembers, isLoading: true })
-
+        this.setState({ memberList: this.props.listOfMembers.listOfMembers, isLoading: false })
     }
 
-    handlePreviousPage = (e) => {
-        e.preventDefault()
+    handlePreviousPage = async (e) => {
         console.log('Previous page')
+        e.preventDefault()
+        const itIsFirstPage = false
         const page = this.state.currentPage - 1
-        this.setState({ isLoading: true, currentPage: page })
 
-        this.props.getListMembers(page, this.state.listOfMembers)
-        
-        this.setState({listOfMembers: this.props.list.listMembers, isLoading: true })
+        this.setState({ isLoading: true, currentPage: page })
+        if (!this.props.listOfMembers.listOfMembers[page - 1] || this.props.listOfMembers.listOfMembers[page - 1].length === 0) {
+            await this.props.getListMembers(page, itIsFirstPage)
+        }
+        else {
+            await this.props.refreshPage(page)
+        }
+
+        this.setState({ memberList: this.props.listOfMembers.listOfMembers, isLoading: false })
     }
 
     render() {
-        const { listMembers } = this.props.list
-        
+        const { memberList, currentPage, isLoading } = this.state
+        console.log(memberList, currentPage)
+
         return (
-            <div className='container'>
+            <div className='container' >
                 <div id="carouselMembers" className="carousel slide" data-ride="carousel" data-interval="false">
-                    <div className="carousel-inner">
-                        <div className="carousel-item active" key={this.state.currentPage}>
-                            <MembersList listOfMembers={listMembers[this.state.currentPage - 1]} />
-                        </div>
-                    </div>
+                    <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
                 </div>
                 <a className="carousel-control-prev" href="#carouselMembers" onClick={this.handlePreviousPage} role="button" data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -75,13 +86,14 @@ class MembersBoard extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getListMembers: (currentPage, listMembers) => dispatch(getListMembers(currentPage, listMembers)),
+        getListMembers: (currentPage) => dispatch(getListMembers(currentPage)),
+        refreshPage: (page) => dispatch(refreshPage(page))
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        list: state.listMembers
+        listOfMembers: state.listOfMembers
     }
 }
 

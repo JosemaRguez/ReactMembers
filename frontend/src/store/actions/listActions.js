@@ -1,19 +1,18 @@
-export const getListMembers = (page, list) => {
-    console.log(page)
+export const getListMembers = (page, itIsFirstPage) => {
     return (dispatch) => {
-        if (!list[page - 1] || list[page - 1].length === 0) {
-            fetch(`/getMembers?page=${page}`)
-                .then(res => res.json())
-                .then(members => {
-                    dispatch({ type: 'GET_LIST', page, list: [...list, members] })
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
-        else{
-            dispatch({ type: 'GET_LIST', page, list })
-        }
+            return fetch(`/getMembers?page=${page}`)
+            .then(res => res.json())
+            .then(members => {
+                dispatch({ type: 'GET_LIST', page, listOfMembers: members, itIsFirstPage })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+}
 
+export const refreshPage = (page) => {
+    return (dispatch) => {
+            dispatch({ type: 'REFRESH_PAGE', page })
     }
 }

@@ -4,7 +4,7 @@ import '../../styles/styles.css'
 
 const MembersList = (props) => {
 
-    if (props.listOfMembers && props.listOfMembers.length > 0) {
+    if (props.listOfMembers && !props.isLoading) {
         return (
             <div className="container">
                 <div className="row">
@@ -30,8 +30,10 @@ const MembersList = (props) => {
     }
     else {
         return (
-            <div className="spinner-border text-danger spin-big p-5" role="status">
-                <span className="sr-only">Loading...</span>
+            <div className="container d-flex justify-content-center">
+                <div className="spinner-border text-danger spin-big p-5" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }

@@ -2,7 +2,7 @@ import listReducer from './listReducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
-    listMembers: listReducer
+    listOfMembers: listReducer
 })
 
 export default rootReducer

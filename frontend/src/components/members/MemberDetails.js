@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import '../../styles/styles.css'
+import image404 from '../../images/404.png'
 
 const MemberDetails = (props) => {
   const { member } = props
@@ -31,11 +32,16 @@ const MemberDetails = (props) => {
   }
   else {
     return (
-      <div className="container">
-          MEMBER NOT FOUND
-          <button type="button" className="btn btn-danger btn-block p-2" onClick={() => props.history.goBack()} name="action">
-          Close
+      <div className="container p-5">
+        <div className="d-flex justify-content-center">
+          <img src={image404} alt="error 404" />
+          <h1>Oops, the member you’re looking for disappeared</h1>
+        </div>
+        <div className="p-4 d-flex justify-content-center">
+          <button type="button" className="btn btn-success " onClick={() => props.history.goBack()} name="action">
+            Go back!
         </button>
+        </div>
       </div>
     )
   }
@@ -44,9 +50,8 @@ const MemberDetails = (props) => {
 
 
 const mapStateToProps = (state, ownProps) => {
-  const listOfMembers = state.listMembers
   const id = ownProps.match.params.id
-  const memberList = listOfMembers.listMembers[listOfMembers.page - 1]
+  const memberList = state.listOfMembers.listOfMembers[state.listOfMembers.page - 1]
   const memberIsolated = memberList ? memberList.find(m => m.id === id) : null
 
   return {
