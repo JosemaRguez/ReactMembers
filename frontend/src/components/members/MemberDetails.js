@@ -21,7 +21,7 @@ const MemberDetails = (props) => {
                 <p className="card-text text-justify">{member.bio}</p>
               </div>
             </div>
-            <button type="button" className="btn btn-primary btn-lg btn-block p-2" onClick={() => props.history.goBack()} type="submit" name="action">
+            <button type="button" className="btn btn-primary btn-lg btn-block p-2" onClick={() => props.history.goBack()} name="action">
               Close
         </button>
           </div>
@@ -33,10 +33,9 @@ const MemberDetails = (props) => {
     return (
       <div className="container">
           MEMBER NOT FOUND
-            <button type="button" className="btn btn-danger btn-block p-2" onClick={() => props.history.goBack()} type="submit">
-              Close
+          <button type="button" className="btn btn-danger btn-block p-2" onClick={() => props.history.goBack()} name="action">
+          Close
         </button>
-
       </div>
     )
   }
@@ -48,9 +47,8 @@ const mapStateToProps = (state, ownProps) => {
   const listOfMembers = state.listMembers
   const id = ownProps.match.params.id
   const memberList = listOfMembers.listMembers[listOfMembers.page - 1]
-  // const member = memberList ? memberList[id]: null
-  var memberIsolated = memberList ? memberList.find(m => m.id === id) : null
-  console.log(memberIsolated)
+  const memberIsolated = memberList ? memberList.find(m => m.id === id) : null
+
   return {
     member: memberIsolated
   }

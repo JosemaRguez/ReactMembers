@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 
 const MembersList = (props) => {
-    if (props.listOfMembers) {
+
+    if (props.listOfMembers && props.listOfMembers.length > 0) {
         return (
             <div className="container">
                 <div className="row">

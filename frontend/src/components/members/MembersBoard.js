@@ -15,49 +15,26 @@ class MembersBoard extends Component {
 
     }
 
-    componentWillMount = () => {
-        const page = this.state.currentPage
-        this.setState({isLoading: true, currentPage: page })
-
-        if (this.state.listOfMembers && this.state.listOfMembers.length === 0) {
-            fetch(`/getMembers?page=${page}`)
-                .then(res => res.json())
-                .then(members => {
-                    this.setState({
-                        listOfMembers: [members],
-                        isLoading: false
-                    })
-                    this.props.getListMembers(page, this.state.listOfMembers)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+    componentDidMount = () =>{
+        if(this.state.listOfMembers.length === 0){
+            this.props.getListMembers(this.state.currentPage, this.state.listOfMembers)
         }
-        this.setState({ isLoading: true })
+       
+        
+        this.setState({listOfMembers: this.props.list.listMembers, isLoading: true })
+        console.log(this.state.listOfMembers)
     }
 
     handleNextPage = (e) => {
         e.preventDefault()
         console.log('Next page')
         const page = this.state.currentPage + 1
-        this.setState({isLoading: true, currentPage: page })
-        console.log(page)
-        if (this.state.listOfMembers[page - 1] && this.state.listOfMembers[page - 1].length === 0) {
-            fetch(`/getMembers?page=${page}`)
-                .then(res => res.json())
-                .then(members => {
-                    this.setState({
-                        listOfMembers: [...this.state.listOfMembers, members],
-                        isLoading: false
-                    })
-                    this.props.getListMembers(page, this.state.listOfMembers)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
+        this.setState({ isLoading: true, currentPage: page })
+        console.log(this.props.list.listMembers)
+        this.props.getListMembers(page, this.state.listOfMembers)
 
-        this.setState({ isLoading: true })
+        this.setState({listOfMembers: this.props.list.listMembers, isLoading: true })
+
     }
 
     handlePreviousPage = (e) => {
@@ -67,32 +44,20 @@ class MembersBoard extends Component {
         this.setState({ isLoading: true, currentPage: page })
 
         this.props.getListMembers(page, this.state.listOfMembers)
-        this.setState({ isLoading: true })
+        
+        this.setState({listOfMembers: this.props.list.listMembers, isLoading: true })
     }
 
     render() {
-        const { isLoading } = this.state
-        const { listMembers, page } = this.props.listMembers
-
+        const { listMembers } = this.props.list
+        
         return (
             <div className='container'>
-                <div id="carouselMembers" className="carousel slide" data-ride="carousel">
+                <div id="carouselMembers" className="carousel slide" data-ride="carousel" data-interval="false">
                     <div className="carousel-inner">
-                        {listMembers &&
-                            listMembers.map(members => {
-                                if (listMembers[page - 1] === members) {
-                                    return (<div className="carousel-item active" key={page}>
-                                        <MembersList listOfMembers={members} isLoading={isLoading} currentPage={page} />
-                                    </div>)
-                                }
-                                else {
-                                    return (
-                                        <div className="carousel-item" key={page}>
-                                        <MembersList listOfMembers={members} isLoading={isLoading} currentPage={page} />
-                                    </div>)
-                                }
-                            })
-                        }
+                        <div className="carousel-item active" key={this.state.currentPage}>
+                            <MembersList listOfMembers={listMembers[this.state.currentPage - 1]} />
+                        </div>
                     </div>
                 </div>
                 <a className="carousel-control-prev" href="#carouselMembers" onClick={this.handlePreviousPage} role="button" data-slide="prev">
@@ -115,9 +80,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
-        listMembers: state.listMembers
+        list: state.listMembers
     }
 }
 

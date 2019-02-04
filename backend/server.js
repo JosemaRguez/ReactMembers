@@ -24,7 +24,8 @@ request(options, function (error, response, body) {
 	var members = JSON.parse(body)
 
   	if (error) throw new Error(error)
-  	res.send(members)
+    res.send(members)
+    
 });
 
 });
