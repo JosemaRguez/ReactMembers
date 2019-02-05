@@ -3,6 +3,8 @@ import MembersList from './MembersList'
 import { connect } from 'react-redux'
 import { getListMembers } from '../../store/actions/listActions'
 import { refreshPage } from '../../store/actions/listActions'
+import arrowForward from '../../images/arrow_forward.svg'
+import arrowBack from '../../images/arrow_back.svg'
 import '../../styles/styles.css'
 
 class MembersBoard extends Component {
@@ -19,7 +21,7 @@ class MembersBoard extends Component {
         const itIsFirstPage = true
 
         this.setState({ isLoading: true })
-        if (this.state.memberList.length === 0) {
+        if (this.props.listOfMembers.listOfMembers.length === 0) {
             await this.props.getListMembers(this.state.currentPage, itIsFirstPage)
 
         }
@@ -50,12 +52,12 @@ class MembersBoard extends Component {
         e.preventDefault()
         const itIsFirstPage = false
 
-        const page = (this.state.currentPage - 1) > 0 ? (this.state.currentPage - 1): this.state.currentPage
+        const page = (this.state.currentPage - 1) > 0 ? (this.state.currentPage - 1) : this.state.currentPage
 
 
         this.setState({ isLoading: true, currentPage: page })
 
-        if (!this.props.listOfMembers.listOfMembers[page - 1] || this.props.listOfMembers.listOfMembers[page - 1].length === 0){
+        if (!this.props.listOfMembers.listOfMembers[page - 1] || this.props.listOfMembers.listOfMembers[page - 1].length === 0) {
             await this.props.getListMembers(page, itIsFirstPage)
         }
         else {
@@ -77,26 +79,26 @@ class MembersBoard extends Component {
 
         return (
             <div>
-                <div className="container" data-interval="false">
+                <div data-interval="false">
                     <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
                     <ol className="carousel-indicators position-relative">
-                    {memberList && Array.from(Array(memberList.length), (e, i) => {
-                        if (i === currentPage - 1) {
-                            return (<li className="active" onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
-                        }
-                        else {
-                            return (<li onClick={(e) => this.handleSelectPage(e, i + 1)} key={i}></li>)
-                        }
-                    })}
-                </ol>
+                        {memberList && Array.from(Array(memberList.length), (e, i) => {
+                            if (i === currentPage - 1) {
+                                return (<li className="active" onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
+                            }
+                            else {
+                                return (<li onClick={(e) => this.handleSelectPage(e, i + 1)} key={i}></li>)
+                            }
+                        })}
+                    </ol>
                 </div>
                 <button className="carousel-control-prev carousel-buttons" disabled={isLoading} onClick={this.handlePreviousPage} >
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    PREVIOUS MEMBER
+                    <img src={arrowBack}></img>
+                    <span className="responsive-text controllers-pages">PREVIOUS MEMBER</span>
                 </button>
                 <button className="carousel-control-next carousel-buttons" disabled={isLoading} onClick={this.handleNextPage} >
-                    NEXT MEMBER
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="responsive-text controllers-pages">NEXT MEMBER</span>
+                    <img src={arrowForward}></img>
                 </button>
             </div>
         )
