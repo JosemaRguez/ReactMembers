@@ -69,8 +69,10 @@ class MembersBoard extends Component {
 
     handleSelectPage = async (e, page) => {
         e.preventDefault()
-        await this.props.refreshPage(page)
-        this.setState({ currentPage: page })
+        if (!this.state.isLoading) {
+            await this.props.refreshPage(page)
+            this.setState({ currentPage: page })
+        }
     }
 
     render() {
@@ -78,26 +80,25 @@ class MembersBoard extends Component {
         console.log(memberList, currentPage)
 
         return (
-            <div>
-                <div data-interval="false">
-                    <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
-                    <ol className="carousel-indicators position-relative">
-                        {memberList && Array.from(Array(memberList.length), (e, i) => {
-                            if (i === currentPage - 1) {
-                                return (<li disabled={isLoading} className="active" style={{backgroundColor:"#1A535C"}} onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
-                            }
-                            else {
-                                return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{backgroundColor:"#5B5B5B"}} key={i}></li>)
-                            }
-                        })}
-                    </ol>
-                </div>
-                <button className="carousel-control-prev carousel-buttons" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
+            <div className="container">
+                <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
+                <ol className="carousel-indicators position-relative">
+                    {memberList && Array.from(Array(memberList.length), (e, i) => {
+                        if (i === currentPage - 1) {
+                            return (<li disabled={isLoading} className="active" style={{ backgroundColor: "#1A535C" }} onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
+                        }
+                        else {
+                            return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i}></li>)
+                        }
+                    })}
+                </ol>
+                
+                <button className="carousel-control-prev carousel-buttons position-fixed" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
                     <img src={arrowBack} alt="back not found" />
-                    <span className="responsive-text controllers-pages">PREVIOUS MEMBER</span>
+                    <span className="responsive-text controllers-pages">PREVIOUS</span>
                 </button>
-                <button className="carousel-control-next carousel-buttons" disabled={isLoading} onClick={this.handleNextPage} type="button">
-                    <span className="responsive-text controllers-pages">NEXT MEMBER</span>
+                <button className="carousel-control-next carousel-buttons position-fixed" disabled={isLoading} onClick={this.handleNextPage} type="button">
+                    <span className="responsive-text controllers-pages">NEXT</span>
                     <img src={arrowForward} alt="forwardnot found" />
                 </button>
             </div>

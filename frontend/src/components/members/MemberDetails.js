@@ -11,7 +11,7 @@ const MemberDetails = (props) => {
     return (
       <div className="container">
         <div className="p-5" key={member.id}>
-          <div className="card detailsNoMove p-2">
+          <div className="card p-2">
             <div className="card-header">
               <img className="img-fluid float-left rounded-circle p-2" src={member.image} alt={`${props.match.params.id}`} />
               <p>Name: {member.name}</p>

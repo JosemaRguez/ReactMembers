@@ -5,7 +5,6 @@ import '../../styles/styles.css'
 const MembersList = (props) => {
     if (props.listOfMembers && !props.isLoading) {
         return (
-                <div className="container">
                     <div className="row">
                     {props.listOfMembers.map(member =>
                         <div className="col-lg-4 d-flex align-items-stretch p-4" key={member.id}>
@@ -24,9 +23,6 @@ const MembersList = (props) => {
                         </div>
                     )}
                     </div>
-                    </div>
-
-
         )
     }
     else {

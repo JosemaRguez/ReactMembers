@@ -1,6 +1,8 @@
 export const getListMembers = (page, itIsFirstPage) => {
+    var pageSize = 6
+    
     return (dispatch) => {
-            return fetch(`/getMembers?page=${page}`)
+            return fetch(`/getMembers?page=${page}&page_size=${pageSize}`)
             .then(res => res.json())
             .then(members => {
                 dispatch({ type: 'GET_LIST', page, listOfMembers: members, itIsFirstPage })
