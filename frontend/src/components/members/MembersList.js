@@ -31,7 +31,7 @@ const MembersList = (props) => {
     else {
         return (
             <div className="container d-flex justify-content-center">
-                <div className="spinner-border text-danger spin-big p-5" role="status">
+                <div className="spinner-border spin-big p-5" style={{color: "#E85A4F"}} role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>

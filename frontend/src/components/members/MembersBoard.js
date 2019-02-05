@@ -62,20 +62,36 @@ class MembersBoard extends Component {
         this.setState({ memberList: this.props.listOfMembers.listOfMembers, isLoading: false })
     }
 
+    handleSelectPage = (e, page) => {
+        this.setState({currentPage: page})
+    }
+
     render() {
         const { memberList, currentPage, isLoading } = this.state
         console.log(memberList, currentPage)
 
         return (
-            <div className='container' >
-                <div id="carouselMembers" className="carousel slide" data-ride="carousel" data-interval="false">
+            <div>
+                <ol className="carousel-indicators">
+                    {memberList && Array.from(Array(memberList.length), (e, i) => {
+                        if (i === currentPage - 1) {
+                            return (<li className="active" onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
+                        }
+                        else {
+                            return (<li onClick={(e) => this.handleSelectPage(e, i + 1)} key={i}></li>)
+                        }
+                    })}
+                </ol>
+                <div id="carouselMembers" className="carousel slide container" data-ride="carousel" data-interval="false">
                     <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
                 </div>
-                <a className="carousel-control-prev" href="#carouselMembers" onClick={this.handlePreviousPage} role="button" data-slide="prev">
+                <a className="carousel-control-prev" href="#carouselMembers" onClick={this.handlePreviousPage} role="button">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="sr-only">Previous</span>
-                </a>
+                    PREVIOUS MEMBER
+                                </a>
                 <a className="carousel-control-next" href="#carouselMembers" onClick={this.handleNextPage} role="button" data-slide="next">
+                    NEXT MEMBER
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>
