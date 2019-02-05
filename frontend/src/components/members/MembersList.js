@@ -6,7 +6,7 @@ const MembersList = (props) => {
 
     if (props.listOfMembers && !props.isLoading) {
         return (
-            <div className="container">
+
                 <div className="row">
                     {props.listOfMembers.map(member =>
                         <div className="p-4" key={member.id}>
@@ -25,13 +25,13 @@ const MembersList = (props) => {
                         </div>
                     )}
                 </div>
-            </div>
+
         )
     }
     else {
         return (
             <div className="container d-flex justify-content-center">
-                <div className="spinner-border spin-big p-5" style={{color: "#E85A4F"}} role="status">
+                <div className="spinner-border spin-big" style={{color: "#E85A4F"}} role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>

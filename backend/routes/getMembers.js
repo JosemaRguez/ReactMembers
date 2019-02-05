@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 	console.log(req.query.page)
 	var options = { method: 'GET',
 	url: 'http://work.mediasmart.io/',
-	qs: { page: req.query.page, page_size: '6' },
+	qs: { page: req.query.page, page_size: 24 },
 	headers: {
 		'cache-control': 'no-cache',
 		Authorization: 'mediasmart2019',

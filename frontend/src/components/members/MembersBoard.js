@@ -19,7 +19,7 @@ class MembersBoard extends Component {
         const itIsFirstPage = true
 
         this.setState({ isLoading: true })
-        if (this.props.listOfMembers.listOfMembers.length === 0) {
+        if (this.state.memberList.length === 0) {
             await this.props.getListMembers(this.state.currentPage, itIsFirstPage)
 
         }
@@ -49,10 +49,13 @@ class MembersBoard extends Component {
         console.log('Previous page')
         e.preventDefault()
         const itIsFirstPage = false
-        const page = this.state.currentPage - 1
+
+        const page = (this.state.currentPage - 1) > 0 ? (this.state.currentPage - 1): this.state.currentPage
+
 
         this.setState({ isLoading: true, currentPage: page })
-        if (!this.props.listOfMembers.listOfMembers[page - 1] || this.props.listOfMembers.listOfMembers[page - 1].length === 0) {
+
+        if (!this.props.listOfMembers.listOfMembers[page - 1] || this.props.listOfMembers.listOfMembers[page - 1].length === 0){
             await this.props.getListMembers(page, itIsFirstPage)
         }
         else {
@@ -62,8 +65,10 @@ class MembersBoard extends Component {
         this.setState({ memberList: this.props.listOfMembers.listOfMembers, isLoading: false })
     }
 
-    handleSelectPage = (e, page) => {
-        this.setState({currentPage: page})
+    handleSelectPage = async (e, page) => {
+        e.preventDefault()
+        await this.props.refreshPage(page)
+        this.setState({ currentPage: page })
     }
 
     render() {
@@ -72,7 +77,9 @@ class MembersBoard extends Component {
 
         return (
             <div>
-                <ol className="carousel-indicators">
+                <div className="container" data-interval="false">
+                    <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
+                    <ol className="carousel-indicators position-relative">
                     {memberList && Array.from(Array(memberList.length), (e, i) => {
                         if (i === currentPage - 1) {
                             return (<li className="active" onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
@@ -82,19 +89,15 @@ class MembersBoard extends Component {
                         }
                     })}
                 </ol>
-                <div id="carouselMembers" className="carousel slide container" data-ride="carousel" data-interval="false">
-                    <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
                 </div>
-                <a className="carousel-control-prev" href="#carouselMembers" onClick={this.handlePreviousPage} role="button">
+                <button className="carousel-control-prev carousel-buttons" disabled={isLoading} onClick={this.handlePreviousPage} >
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
                     PREVIOUS MEMBER
-                                </a>
-                <a className="carousel-control-next" href="#carouselMembers" onClick={this.handleNextPage} role="button" data-slide="next">
+                </button>
+                <button className="carousel-control-next carousel-buttons" disabled={isLoading} onClick={this.handleNextPage} >
                     NEXT MEMBER
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
+                </button>
             </div>
         )
     }

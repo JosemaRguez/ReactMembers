@@ -2,7 +2,8 @@
   "name": "mediasmart",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"cd backend && npm start\"  \"cd frontend && npm start\""
+    "start": "concurrently \"cd backend && npm start\"  \"cd frontend && npm start\"",
+    "update": "concurrently \"cd backend && npm install\"  \"cd frontend && npm install\""
   },
   "dependencies": {
     "express": "^4.16.4",
