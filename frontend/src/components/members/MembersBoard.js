@@ -84,21 +84,21 @@ class MembersBoard extends Component {
                     <ol className="carousel-indicators position-relative">
                         {memberList && Array.from(Array(memberList.length), (e, i) => {
                             if (i === currentPage - 1) {
-                                return (<li className="active" onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
+                                return (<li disabled={isLoading} className="active" style={{backgroundColor:"#1A535C"}} onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
                             }
                             else {
-                                return (<li onClick={(e) => this.handleSelectPage(e, i + 1)} key={i}></li>)
+                                return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{backgroundColor:"#5B5B5B"}} key={i}></li>)
                             }
                         })}
                     </ol>
                 </div>
-                <button className="carousel-control-prev carousel-buttons" disabled={isLoading} onClick={this.handlePreviousPage} >
-                    <img src={arrowBack}></img>
+                <button className="carousel-control-prev carousel-buttons" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
+                    <img src={arrowBack} alt="back not found" />
                     <span className="responsive-text controllers-pages">PREVIOUS MEMBER</span>
                 </button>
-                <button className="carousel-control-next carousel-buttons" disabled={isLoading} onClick={this.handleNextPage} >
+                <button className="carousel-control-next carousel-buttons" disabled={isLoading} onClick={this.handleNextPage} type="button">
                     <span className="responsive-text controllers-pages">NEXT MEMBER</span>
-                    <img src={arrowForward}></img>
+                    <img src={arrowForward} alt="forwardnot found" />
                 </button>
             </div>
         )

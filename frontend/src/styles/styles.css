@@ -65,4 +65,11 @@ body{
     height: 100%;
     align-items:center;
     cursor: pointer;
-  } 
+  }
+
+
+  .carousel-indicators > li {
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+  }
