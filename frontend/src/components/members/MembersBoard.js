@@ -92,7 +92,6 @@ class MembersBoard extends Component {
                         }
                     })}
                 </ol>
-                
                 <button className="carousel-control-prev carousel-buttons position-fixed" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
                     <img src={arrowBack} alt="back not found" />
                     <span className="responsive-text controllers-pages">PREVIOUS</span>
