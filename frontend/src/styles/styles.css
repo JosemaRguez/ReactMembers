@@ -1,5 +1,5 @@
 body{
-    background-color: #F7FFF7;
+    background-color: white;
 }
 
 .navbarTextSize{
@@ -8,7 +8,7 @@ body{
 
 .navbar-style{
     /* background-color: transparent; */
-       background-color: teal;
+       background-color: #EF6461;
 }
 
 .img-fluid{
@@ -29,11 +29,11 @@ body{
     max-height: 18rem;
     min-width: 5rem;
     max-width: 18rem;
-    background-color: #1A535C;
+    background-color: #313638;
 }
 
 .spin-big {
-    color: #FF6B6B;
+    color: #E4B363;
     height: 15rem;
     width: 15rem;
     margin-top: 5rem;
@@ -48,25 +48,26 @@ body{
     outline: 0 !important;
     max-height: 8rem;
     max-width: 8rem;
-    width: 100%;
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
     align-items: center;
     cursor: pointer;
-    
+    text-decoration: none;
   }
 
-
-  .carousel-buttons.right{
-    right: 2%;
+  .carousel-buttons:hover {
+    background-color: #E4B363;
+    color: black;
   }
 
-  .carousel-buttons.left{
-    left: 2%;
+  .carousel-buttons:active {
+    background-color: #E4B363;
+    color: black;
   }
-
-
+  
   .carousel-indicators > li {
     border-radius: 50%;
-    bottom: 50px;
     width: 17px;
     height: 17px;
   }

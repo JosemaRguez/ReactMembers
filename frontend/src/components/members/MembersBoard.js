@@ -77,13 +77,13 @@ class MembersBoard extends Component {
 
     render() {
         const { memberList, currentPage, isLoading } = this.state
-        console.log(memberList, currentPage)
 
         return (
             <div className="container">
                 <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
+                
                 <ol className="carousel-indicators position-relative">
-                    <button className="carousel-buttons position-relative" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
+                    <button className="rounded-circle carousel-buttons position-relative" disabled={isLoading} onClick={this.handlePreviousPage}  type="button">
                         <img src={arrowBack} alt="back not found" />
                     </button>
                     {memberList && Array.from(Array(memberList.length), (e, i) => {
@@ -94,11 +94,10 @@ class MembersBoard extends Component {
                             return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i}>{i}</li>)
                         }
                     })}
-                    <button className="carousel-buttons position-relative" disabled={isLoading}  onClick={this.handleNextPage} type="button">
+                    <button className="rounded-circle carousel-buttons position-relative" disabled={isLoading} onClick={this.handleNextPage} type="button">
                         <img src={arrowForward} alt="forwardnot found" />
                     </button>
                 </ol>
-
             </div>
         )
     }
