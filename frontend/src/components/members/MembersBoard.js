@@ -83,23 +83,22 @@ class MembersBoard extends Component {
             <div className="container">
                 <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
                 <ol className="carousel-indicators position-relative">
+                    <button className="carousel-buttons position-relative" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
+                        <img src={arrowBack} alt="back not found" />
+                    </button>
                     {memberList && Array.from(Array(memberList.length), (e, i) => {
                         if (i === currentPage - 1) {
                             return (<li disabled={isLoading} className="active" style={{ backgroundColor: "#1A535C" }} onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
                         }
                         else {
-                            return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i}></li>)
+                            return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i}>{i}</li>)
                         }
                     })}
+                    <button className="carousel-buttons position-relative" disabled={isLoading}  onClick={this.handleNextPage} type="button">
+                        <img src={arrowForward} alt="forwardnot found" />
+                    </button>
                 </ol>
-                <button className="carousel-control-prev carousel-buttons position-fixed" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
-                    <img src={arrowBack} alt="back not found" />
-                    <span className="responsive-text controllers-pages">PREVIOUS</span>
-                </button>
-                <button className="carousel-control-next carousel-buttons position-fixed" disabled={isLoading} onClick={this.handleNextPage} type="button">
-                    <span className="responsive-text controllers-pages">NEXT</span>
-                    <img src={arrowForward} alt="forwardnot found" />
-                </button>
+
             </div>
         )
     }

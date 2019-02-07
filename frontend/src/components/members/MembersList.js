@@ -7,7 +7,7 @@ const MembersList = (props) => {
         return (
                     <div className="row">
                     {props.listOfMembers.map(member =>
-                        <div className="col-lg-4 d-flex align-items-stretch p-4" key={member.id}>
+                        <div className="col-lg-4 d-flex align-items-stretch p-5" key={member.id}>
                             <div className="card cardNoMove">
                                 <div className="card-header p-1">
                                     <img className="img-fluid float-left rounded-circle p-2 text-light" src={member.image} alt={`Card ${member.id} not found`} />

@@ -8,13 +8,7 @@ body{
 
 .navbar-style{
     /* background-color: transparent; */
-        background-image: -webkit-repeating-radial-gradient(center center, #4ECDC4, #4ECDC4 1.2px, transparent 1px, transparent 100%);
-        background-image: -moz-repeating-radial-gradient(center center, #4ECDC4, #4ECDC4 1.2px, transparent 1px, transparent 100%);
-        background-image: -ms-repeating-radial-gradient(center center, #4ECDC4, #4ECDC4 1.2px, transparent 1px, transparent 100%);
-        background-image: repeating-radial-gradient(center center, #4ECDC4, #4ECDC4 1.2px, transparent 1px, transparent 100%);
-        -webkit-background-size: 3px 3px;
-        -moz-background-size: 3px 3px;
-        background-size: 3px 3px;
+       background-color: teal;
 }
 
 .img-fluid{
@@ -49,18 +43,30 @@ body{
 
   .carousel-buttons {
     background-color: transparent;
-    border: none;
-    top: 50%;
+    padding: 0px;
+    border: 0px;
+    outline: 0 !important;
     max-height: 8rem;
     max-width: 8rem;
-    width:100%;
+    width: 100%;
     align-items: center;
     cursor: pointer;
+    
+  }
+
+
+  .carousel-buttons.right{
+    right: 2%;
+  }
+
+  .carousel-buttons.left{
+    left: 2%;
   }
 
 
   .carousel-indicators > li {
     border-radius: 50%;
+    bottom: 50px;
     width: 17px;
     height: 17px;
   }
