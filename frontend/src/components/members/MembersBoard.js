@@ -88,10 +88,10 @@ class MembersBoard extends Component {
                     </button>
                     {memberList && Array.from(Array(memberList.length), (e, i) => {
                         if (i === currentPage - 1) {
-                            return (<li disabled={isLoading} className="active" style={{ backgroundColor: "#1A535C" }} onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} ></li>)
+                            return (<li disabled={isLoading} className="active" style={{ backgroundColor: "#EF6461" }} onClick={(e) => this.handleSelectPage(e, i + 1)} key={i} />)
                         }
                         else {
-                            return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i}>{i}</li>)
+                            return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i} />)
                         }
                     })}
                     <button className="rounded-circle carousel-buttons position-relative" disabled={isLoading} onClick={this.handleNextPage} type="button">

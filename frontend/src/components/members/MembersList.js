@@ -12,13 +12,15 @@ const MembersList = (props) => {
                         <div className="card cardNoMove">
                             <div className="card-header p-1">
                                 <img className="img-fluid float-left rounded-circle p-2 text-light" src={member.image} alt={`Card ${member.id} not found`} onError={(e) => e.target.src = memberNotFound} />
-                                <p className="p-2 responsive-text text-light">{`${member.name}`}</p>
+                                <p className="text-light text-width">{member.name}</p>
                             </div>
-                            <div className="card-body text-center">
-                                <p className="card-text responsive-text text-light">{`${member.age} years old`}</p>
-                                <Link to={`/member/${member.id}`} className="btn btn-secondary btn-block text-dark" style={{ backgroundColor: "#E0DFD5" }}>
+                            <div className="card-body">
+                                <p className="card-text text-width text-light text-button-space">{`${member.age} years old`}</p>
+                                <div className="at-bottom">
+                                <Link to={`/member/${member.id}`} className="btn btn-block text-dark" style={{backgroundColor: "#E0DFD5"}}>
                                     Check bio
-                                    </Link>
+                                </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

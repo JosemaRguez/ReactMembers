@@ -14,15 +14,15 @@ const MemberDetails = (props) => {
           <div className="card p-2">
             <div className="card-header">
               <img className="img-fluid float-left rounded-circle p-2" src={member.image} alt={`${props.match.params.id}`}  onError={(e) => e.target.src = memberNotFound} />
-              <p>Name: {member.name}</p>
-              <p>Age: {member.age} years old</p>
+              <p className="responsive-text">Name: {member.name}</p>
+              <p className="responsive-text">Age: {member.age} years old</p>
             </div>
             <div className="card-body">
               <div className="card-content">
-                <p className="card-text text-justify responsive-text p-5">{member.bio}</p>
+                <p className="card-text text-justify responsive-text p-2 responsive-text">{member.bio}</p>
               </div>
             </div>
-            <button type="button" className="btn btn-primary btn-lg btn-block p-2" onClick={() => props.history.goBack()} name="action">
+            <button type="button" className="btn btn-lg btn-block button-member-details p-2 responsive-text" onClick={() => props.history.goBack()} name="action">
               Close
           </button>
           </div>
@@ -38,7 +38,7 @@ const MemberDetails = (props) => {
           <h1 className="responsive-text">Oops, the member you’re looking for disappeared</h1>
         </div>
         <div className="p-4 d-flex justify-content-center">
-          <button type="button" className="btn btn-success " onClick={() => props.history.goBack()} name="action">
+          <button type="button" className="btn btn-success" onClick={() => props.history.goBack()} name="action">
             Go back!
         </button>
         </div>

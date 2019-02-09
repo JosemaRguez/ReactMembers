@@ -21,7 +21,15 @@ body{
 }
 
 .responsive-text{
-    font-size: 1rem;
+    font-size: 1vw;
+}
+
+.text-width{
+  font-size: 1rem;
+}
+
+.text-button-space{
+  padding-bottom: 1rem;
 }
 
 .cardNoMove{
@@ -54,20 +62,29 @@ body{
     align-items: center;
     cursor: pointer;
     text-decoration: none;
+    background-color: rgba(228, 179, 99, 0.5);
   }
 
-  .carousel-buttons:hover {
+  .carousel-buttons:hover{
     background-color: #E4B363;
-    color: black;
-  }
-
-  .carousel-buttons:active {
-    background-color: #E4B363;
-    color: black;
   }
   
   .carousel-indicators > li {
     border-radius: 50%;
     width: 17px;
     height: 17px;
+  }
+
+
+  .button-member-details{
+    background-color: #E4B363;
+  }
+
+  .at-bottom{
+    display: flex;
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 7px;
+    align-items: flex-end;
   }
