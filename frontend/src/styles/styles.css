@@ -20,8 +20,13 @@ body{
     color: #FF6B6B;
 }
 
-.responsive-text{
+.responsive-bio{
     font-size: 1vw;
+}
+
+.responsive-header-text{
+  font-size: 2vw;
+
 }
 
 .text-width{
@@ -38,6 +43,10 @@ body{
     min-width: 5rem;
     max-width: 18rem;
     background-color: #313638;
+}
+
+.card-color-details{
+  background-color: #313638;
 }
 
 .spin-big {
@@ -65,14 +74,25 @@ body{
     background-color: rgba(228, 179, 99, 0.5);
   }
 
-  .carousel-buttons:hover{
+  .carousel-buttons:hover, .carousel-buttons:focus{
     background-color: #E4B363;
+  }
+
+
+  .carousel-button-next{
+    right: 2rem;
+  }
+
+  .carousel-button-previous{
+      left: 2rem;
   }
   
   .carousel-indicators > li {
     border-radius: 50%;
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
   }
 
 

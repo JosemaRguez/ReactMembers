@@ -1,10 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
+import image404 from '../../images/404.png'
 import memberNotFound from '../../images/memberNotFound.png'
 
 const MembersList = (props) => {
-    if (props.listOfMembers && !props.isLoading) {
+    if(props.listOfMembers && props.listOfMembers.length === 0){
+        return(<div className="container p-5">
+        <div className="d-flex justify-content-center">
+          <img className="img-fluid" src={image404} alt="error 404" />
+          <h1 className="responsive-text">Oops, the members you’re looking for disappeared</h1>
+        </div>
+      </div>)
+    }
+    else if (props.listOfMembers && !props.isLoading) {
         return (
             <div className="row">
                 {props.listOfMembers.map(member =>

@@ -12,14 +12,14 @@ const MemberDetails = (props) => {
       <div className="container-fluid">
         <div className="p-5" key={member.id}>
           <div className="card p-2">
-            <div className="card-header">
+            <div className="card-header card-color-details">
               <img className="img-fluid float-left rounded-circle p-2" src={member.image} alt={`${props.match.params.id}`}  onError={(e) => e.target.src = memberNotFound} />
-              <p className="responsive-text">Name: {member.name}</p>
-              <p className="responsive-text">Age: {member.age} years old</p>
+              <p className="responsive-header-text text-light">Name: {member.name}</p>
+              <p className="responsive-header-text text-light">Age: {member.age} years old</p>
             </div>
             <div className="card-body">
               <div className="card-content">
-                <p className="card-text text-justify responsive-text p-2 responsive-text">{member.bio}</p>
+                <p className="card-text text-justify responsive-text p-2 responsive-bio">{member.bio}</p>
               </div>
             </div>
             <button type="button" className="btn btn-lg btn-block button-member-details p-2 responsive-text" onClick={() => props.history.goBack()} name="action">

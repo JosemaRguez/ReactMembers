@@ -21,19 +21,18 @@ class MembersBoard extends Component {
         const itIsFirstPage = true
 
         this.setState({ isLoading: true })
+
         if (this.props.listOfMembers.listOfMembers.length === 0) {
             await this.props.getListMembers(this.state.currentPage, itIsFirstPage)
 
         }
+
         this.setState({ memberList: this.props.listOfMembers.listOfMembers, isLoading: false })
-        console.log('render first')
     }
 
     handleNextPage = async (e) => {
         e.preventDefault()
         const itIsFirstPage = false
-
-        console.log('Next page')
         const page = this.state.currentPage + 1
 
         this.setState({ isLoading: true, currentPage: page })
@@ -48,12 +47,9 @@ class MembersBoard extends Component {
     }
 
     handlePreviousPage = async (e) => {
-        console.log('Previous page')
         e.preventDefault()
         const itIsFirstPage = false
-
         const page = (this.state.currentPage - 1) > 0 ? (this.state.currentPage - 1) : this.state.currentPage
-
 
         this.setState({ isLoading: true, currentPage: page })
 
@@ -81,9 +77,9 @@ class MembersBoard extends Component {
         return (
             <div className="container">
                 <MembersList listOfMembers={memberList[currentPage - 1]} isLoading={isLoading} />
-                
+
                 <ol className="carousel-indicators position-relative">
-                    <button className="rounded-circle carousel-buttons position-relative" disabled={isLoading} onClick={this.handlePreviousPage}  type="button">
+                    <button className="rounded-circle carousel-buttons position-relative carousel-button-next" disabled={isLoading} onClick={this.handlePreviousPage} type="button">
                         <img src={arrowBack} alt="back not found" />
                     </button>
                     {memberList && Array.from(Array(memberList.length), (e, i) => {
@@ -94,7 +90,7 @@ class MembersBoard extends Component {
                             return (<li disabled={isLoading} onClick={(e) => this.handleSelectPage(e, i + 1)} style={{ backgroundColor: "#5B5B5B" }} key={i} />)
                         }
                     })}
-                    <button className="rounded-circle carousel-buttons position-relative" disabled={isLoading} onClick={this.handleNextPage} type="button">
+                    <button className="rounded-circle carousel-buttons position-relative carousel-button-previous" disabled={isLoading} onClick={this.handleNextPage} type="button">
                         <img src={arrowForward} alt="forwardnot found" />
                     </button>
                 </ol>

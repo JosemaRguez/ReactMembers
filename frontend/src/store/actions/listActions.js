@@ -1,5 +1,5 @@
 export const getListMembers = (page, itIsFirstPage) => {
-    var pageSize = 6
+    const pageSize = 12
     
     return (dispatch) => {
             return fetch(`/getMembers?page=${page}&page_size=${pageSize}`)
