@@ -22,7 +22,7 @@ const MemberDetails = (props) => {
                 <p className="card-text text-justify responsive-text p-2 responsive-bio">{member.bio}</p>
               </div>
             </div>
-            <button type="button" className="btn btn-lg btn-block button-member-details p-2 responsive-text" onClick={() => props.history.goBack()} name="action">
+            <button type="button" className="btn btn-lg btn-block button-member-details p-2 responsive-text responsive-bio" onClick={() => props.history.goBack()} name="action">
               Close
           </button>
           </div>

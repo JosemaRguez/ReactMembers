@@ -7,7 +7,6 @@ body{
 }
 
 .navbar-style{
-    /* background-color: transparent; */
        background-color: #EF6461;
 }
 
@@ -21,7 +20,7 @@ body{
 }
 
 .responsive-bio{
-    font-size: 1vw;
+    font-size: 1.8vw;
 }
 
 .responsive-header-text{
@@ -53,13 +52,18 @@ body{
     color: #E4B363;
     height: 15rem;
     width: 15rem;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 10rem;
+    margin-bottom: 25rem;
     top: 20rem;
   }
 
+  .indicators {
+    color: #FFFFFF;
+
+  }
+
   .carousel-buttons {
-    background-color: transparent;
+    background-color: rgba(228, 179, 99, 0.5);
     padding: 0px;
     border: 0px;
     outline: 0 !important;
@@ -71,7 +75,6 @@ body{
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    background-color: rgba(228, 179, 99, 0.5);
   }
 
   .carousel-buttons:hover, .carousel-buttons:focus{
@@ -86,7 +89,7 @@ body{
   .carousel-button-previous{
       left: 2rem;
   }
-  
+
   .carousel-indicators > li {
     border-radius: 50%;
     width: 20px;

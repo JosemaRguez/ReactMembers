@@ -91,7 +91,7 @@ class MembersBoard extends Component {
                         }
                     })}
                     <button className="rounded-circle carousel-buttons position-relative carousel-button-previous" disabled={isLoading} onClick={this.handleNextPage} type="button">
-                        <img src={arrowForward} alt="forwardnot found" />
+                        <img src={arrowForward} alt="forward not found" />
                     </button>
                 </ol>
             </div>
